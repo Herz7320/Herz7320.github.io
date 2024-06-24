@@ -1,0 +1,696 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Viewer Testing</title>
+</head>
+<body>
+    <div>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?size=760x300&maptype=roadmap&key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&scale=2&markers=color:red%7Clabel:P%7C33.8792171,-118.0274371&markers=color:blue%7Clabel:A%7C33.8674044,-117.9981387&markers=color:blue%7Clabel:B%7C33.8463218,-118.0461393&markers=color:blue%7Clabel:C%7C33.8747573,-118.1296293"width=97% height=97% style="position:relative; left:15px"> -->
+        <!-- <img src="https://maps.googleapis.com/maps/api/staticmap?size=760x300&maptype=roadmap&key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&scale=2&markers=color:red%7Clabel:P%7C16702+Valley+View+Ave,La+Mirada,CA&markers=color:blue%7Clabel:A%7CBuena+Park,CA&markers=color:blue%7Clabel:B%7C239+Los+Cerritos+Center,Cerritos,CA&markers=color:blue%7Clabel:C%7C16453+Colorado+Ave,Paramount,CA,90723"width=97% height=97% style="position:relative; left:15px"> -->
+        <!-- <iframe width="1280" height="720" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?&key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&q=16702+Valley+View+Ave,La+Mirada,CA&q=16453+Colorado+Ave,Paramount,CA,90723"></iframe> -->
+        <!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1nj4tn2KJxW_uWEjK5-JhyD6GLrk4kWA&ehbc=2E312F&noprof=1" width="640" height="480"></iframe> -->
+    <!-- </div>
+</body>
+</html> -->
+
+<!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiple Addresses on Google Map</title>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&q=place_id:ChIJz3U3YIYs3YARcCqT-JT-U1Q&%7Cplace_id:ChIJRbwcqnUt3YARg3aI8ZZUHCw" allowfullscreen></iframe>
+  </body>
+</html> -->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiple Markers on Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&callback=initMap" async defer></script>
+    <style>
+      /* Set the size of the map */
+      #map {
+        height: 100%;
+      }
+      /* The page needs to have a height of 100% to show the map */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      // Function to initialize the map
+      function initMap() {
+        // Create a map object and specify the center and zoom level.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 33.904554, lng: -118.012753},
+          zoom: 8
+        });
+
+        // Create an array of marker locations
+        var locations = [
+          {lat: 33.88495, lng: -118.162728},
+          {lat: 33.879217, lng: -118.027437},
+          {lat: 33.847914, lng: -117.934403},
+          {lat: 33.894291, lng: -117.927407}
+        ];
+
+        // Loop through the locations and place a marker for each one.
+        locations.forEach(function(location) {
+          new google.maps.Marker({
+            position: location,
+            map: map
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html> -->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiple Markers on Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&callback=initMap" async defer></script>
+    <style>
+      /* Set the size of the map */
+      #map {
+        height: 100%;
+      }
+      /* The page needs to have a height of 100% to show the map */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      // Function to initialize the map
+      function initMap() {
+        // Create a map object and specify the center and zoom level.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+
+        // Array of addresses
+        var addresses = [
+          "1600 Amphitheatre Parkway, Mountain View, CA",
+          "1 Infinite Loop, Cupertino, CA",
+          "1601 Willow Road, Menlo Park, CA",
+          "1 Hacker Way, Menlo Park, CA"
+        ];
+
+        // Create a geocoder object to convert addresses to coordinates
+        var geocoder = new google.maps.Geocoder();
+
+        // Function to geocode an address and place a marker
+        function geocodeAddress(geocoder, map, address) {
+          geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+              map.setCenter(results[0].geometry.location);
+            } else {
+              console.log('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+
+        // Loop through the addresses and place a marker for each one
+        addresses.forEach(function(address) {
+          geocodeAddress(geocoder, map, address);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html> -->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Closest Vendors on Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&callback=initMap" async defer></script>
+    <style>
+      /* Set the size of the map */
+      #map {
+        height: 100%;
+      }
+      /* The page needs to have a height of 100% to show the map */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      // Function to initialize the map
+      function initMap() {
+        // Create a map object and specify the center and zoom level.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 34.0522, lng: -118.2437}, // Center on Los Angeles, CA
+          zoom: 10
+        });
+
+        // Array of vendor addresses
+        var vendorAddresses = [
+          "Buena Park, CA",
+          "239 Los Cerritos Center, Cerritos, CA",
+          "16453 Colorado Ave, Paramount, CA 90723",
+          "123 Main St, Anaheim, CA"
+        ];
+
+        // Patient's address
+        var patientAddress = "16702 Valley View Ave, La Mirada, CA 90638";
+
+        // Create a geocoder object to convert addresses to coordinates
+        var geocoder = new google.maps.Geocoder();
+
+        // Function to geocode an address and return a promise
+        function geocodeAddress(geocoder, address) {
+          return new Promise((resolve, reject) => {
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') {
+                resolve(results[0].geometry.location);
+              } else {
+                reject('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          });
+        }
+
+        // Function to calculate distance between two points (in meters)
+        function calculateDistance(point1, point2) {
+          var R = 6371; // Radius of the Earth in km
+          var dLat = (point2.lat() - point1.lat()) * Math.PI / 180;
+          var dLng = (point2.lng() - point1.lng()) * Math.PI / 180;
+          var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(point1.lat() * Math.PI / 180) * Math.cos(point2.lat() * Math.PI / 180) *
+                  Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          var distance = R * c * 1000; // Distance in meters
+          return distance;
+        }
+
+        // Function to find and display the closest vendors
+        async function findClosestVendors() {
+          try {
+            var patientLocation = await geocodeAddress(geocoder, patientAddress);
+            var vendorLocations = await Promise.all(vendorAddresses.map(address => geocodeAddress(geocoder, address)));
+
+            // Calculate distances and sort vendors by distance
+            var vendorsWithDistances = vendorLocations.map((location, index) => {
+              return {
+                address: vendorAddresses[index],
+                location: location,
+                distance: calculateDistance(patientLocation, location)
+              };
+            }).sort((a, b) => a.distance - b.distance);
+
+            // Display the closest vendors (e.g., the top 3)
+            vendorsWithDistances.slice(0, 3).forEach(vendor => {
+              new google.maps.Marker({
+                map: map,
+                position: vendor.location,
+                title: vendor.address
+              });
+            });
+
+            // Center the map on the patient's location
+            map.setCenter(patientLocation);
+            new google.maps.Marker({
+              map: map,
+              position: patientLocation,
+              title: "Patient's Location",
+              icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+        // Find and display the closest vendors
+        findClosestVendors();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html> -->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Closest Vendors on Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&callback=initMap" async defer></script>
+    <style>
+      /* Set the size of the map */
+      #map {
+        height: 100%;
+      }
+      /* The page needs to have a height of 100% to show the map */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      /* Style for the information display */
+      #info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        z-index: 5;
+      }
+    </style>
+    <script>
+      // Function to initialize the map
+      function initMap() {
+        // Create a map object and specify the center and zoom level.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 34.0522, lng: -118.2437}, // Center on Los Angeles, CA
+          zoom: 10
+        });
+
+        // Array of vendor addresses
+        var vendorAddresses = [
+          "Buena Park, CA",
+          "239 Los Cerritos Center, Cerritos, CA",
+          "16453 Colorado Ave, Paramount, CA 90723",
+          "123 Main St, Anaheim, CA"
+        ];
+
+        // Patient's address
+        var patientAddress = "16702 Valley View Ave, La Mirada, CA 90638";
+
+        // Create a geocoder object to convert addresses to coordinates
+        var geocoder = new google.maps.Geocoder();
+
+        // Function to geocode an address and return a promise
+        function geocodeAddress(geocoder, address) {
+          return new Promise((resolve, reject) => {
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') {
+                resolve(results[0].geometry.location);
+              } else {
+                reject('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          });
+        }
+
+        // Function to calculate distance between two points (in meters)
+        function calculateDistance(point1, point2) {
+          var R = 6371; // Radius of the Earth in km
+          var dLat = (point2.lat() - point1.lat()) * Math.PI / 180;
+          var dLng = (point2.lng() - point1.lng()) * Math.PI / 180;
+          var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(point1.lat() * Math.PI / 180) * Math.cos(point2.lat() * Math.PI / 180) *
+                  Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          var distance = R * c * 1000; // Distance in meters
+          return distance;
+        }
+
+        // Function to find and display the closest vendors
+        async function findClosestVendors() {
+          try {
+            var patientLocation = await geocodeAddress(geocoder, patientAddress);
+            var vendorLocations = await Promise.all(vendorAddresses.map(address => geocodeAddress(geocoder, address)));
+
+            // Calculate distances and sort vendors by distance
+            var vendorsWithDistances = vendorLocations.map((location, index) => {
+              return {
+                address: vendorAddresses[index],
+                location: location,
+                distance: calculateDistance(patientLocation, location)
+              };
+            }).sort((a, b) => a.distance - b.distance);
+
+            // Display the closest vendors (e.g., the top 3)
+            vendorsWithDistances.slice(0, 3).forEach(vendor => {
+              var marker = new google.maps.Marker({
+                map: map,
+                position: vendor.location,
+                title: vendor.address
+              });
+
+              // Add click event listener to the marker
+              marker.addListener('click', () => {
+                showVendorDetails(vendor);
+              });
+            });
+
+            // Center the map on the patient's location
+            map.setCenter(patientLocation);
+            new google.maps.Marker({
+              map: map,
+              position: patientLocation,
+              title: "Patient's Location",
+              icon: {
+                url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              }
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+        // Function to display vendor details
+        function showVendorDetails(vendor) {
+          var infoDiv = document.getElementById('info');
+          infoDiv.innerHTML = `<h3>Vendor Details</h3>
+                               <p><strong>Address:</strong> ${vendor.address}</p>
+                               <p><strong>Distance:</strong> ${(vendor.distance / 1000).toFixed(2)} km</p>
+                               <p><strong>Location:</strong> ${vendor.location.lat()}, ${vendor.location.lng()}</p>`;
+        }
+
+        // Find and display the closest vendors
+        findClosestVendors();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="info"></div>
+  </body>
+</html> -->
+
+<!-- -----------------------------------------Selected Address in Textbox----------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Closest Vendors on Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&callback=initMap" async defer></script>
+    <style>
+      /* Set the size of the map */
+      #map {
+        height: 100%;
+      }
+      /* The page needs to have a height of 100% to show the map */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      /* Style for the information display */
+      #info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        z-index: 5;
+      }
+      /* Style for the address input */
+      #selectedAddress {
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        padding: 5px;
+        z-index: 5;
+      }
+    </style>
+    <script>
+      // Function to initialize the map
+      function initMap() {
+        // Create a map object and specify the center and zoom level.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 34.0522, lng: -118.2437}, // Center on Los Angeles, CA
+          zoom: 10
+        });
+
+        // Array of vendor addresses
+        var vendorAddresses = [
+          "Buena Park, CA",
+          "239 Los Cerritos Center, Cerritos, CA",
+          "16453 Colorado Ave, Paramount, CA 90723",
+          "123 Main St, Anaheim, CA" 
+        ];
+
+        // Patient's address
+        var patientAddress = "16702 Valley View Ave, La Mirada, CA 90638";
+
+        // Create a geocoder object to convert addresses to coordinates
+        var geocoder = new google.maps.Geocoder();
+
+        // Function to geocode an address and return a promise
+        function geocodeAddress(geocoder, address) {
+          return new Promise((resolve, reject) => {
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') {
+                resolve(results[0].geometry.location);
+              } else {
+                reject('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          });
+        }
+
+        // Function to calculate distance between two points (in meters)
+        function calculateDistance(point1, point2) {
+          var R = 6371; // Radius of the Earth in km
+          var dLat = (point2.lat() - point1.lat()) * Math.PI / 180;
+          var dLng = (point2.lng() - point1.lng()) * Math.PI / 180;
+          var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(point1.lat() * Math.PI / 180) * Math.cos(point2.lat() * Math.PI / 180) *
+                  Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          var distance = R * c * 1000; // Distance in meters
+          return distance;
+        }
+
+        // Function to find and display the closest vendors
+        async function findClosestVendors() {
+          try {
+            var patientLocation = await geocodeAddress(geocoder, patientAddress);
+            var vendorLocations = await Promise.all(vendorAddresses.map(address => geocodeAddress(geocoder, address)));
+
+            // Calculate distances and sort vendors by distance
+            var vendorsWithDistances = vendorLocations.map((location, index) => {
+              return {
+                address: vendorAddresses[index],
+                location: location,
+                distance: calculateDistance(patientLocation, location)
+              };
+            }).sort((a, b) => a.distance - b.distance);
+
+            // Display the closest vendors (e.g., the top 3)
+            vendorsWithDistances.slice(0, 3).forEach(vendor => {
+              var marker = new google.maps.Marker({
+                map: map,
+                position: vendor.location,
+                title: vendor.address
+              });
+
+              // Add click event listener to the marker
+              marker.addListener('click', () => {
+                selectVendor(vendor);
+              });
+            });
+
+            // Center the map on the patient's location
+            map.setCenter(patientLocation);
+            new google.maps.Marker({
+              map: map,
+              position: patientLocation,
+              title: "Patient's Location",
+              icon: {
+                url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              }
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+        // Function to select a vendor and populate the address input
+        function selectVendor(vendor) {
+          var addressInput = document.getElementById('selectedAddress');
+          addressInput.value = vendor.address;
+        }
+
+        // Find and display the closest vendors
+        findClosestVendors();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <input type="text" id="selectedAddress" placeholder="Selected Vendor Address" readonly />
+  </body>
+</html> -->
+
+<!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Closest Vendors on Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYIVnxp1Nu7NmvAL4aGRm9WCZLQtv7Td8&callback=initMap" async defer></script>
+    <style>
+      /* Set the size of the map */
+      #map {
+        height: 300px; /* Adjust the height to fit your needs */
+        width: 100%;   /* Adjust the width to fit your needs */
+      }
+      /* Style for the information display */
+      #info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        z-index: 5;
+      }
+      /* Style for the address input */
+      #selectedAddress {
+        margin-top: 10px;
+        padding: 5px;
+        width: 100%;
+      }
+    </style>
+    <script>
+      var selectedAddress = ""; // Variable to store the selected address
+
+      // Function to initialize the map
+      function initMap() {
+        // Create a map object and specify the center and zoom level.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 34.0522, lng: -118.2437}, // Center on Los Angeles, CA
+          zoom: 10
+        });
+
+        // Array of vendor addresses
+        var vendorAddresses = [
+          "Buena Park, CA",
+          "239 Los Cerritos Center, Cerritos, CA",
+          "16453 Colorado Ave, Paramount, CA 90723",
+          "123 Main St, Anaheim, CA"
+        ];
+
+        // Patient's address
+        var patientAddress = "16702 Valley View Ave, La Mirada, CA 90638";
+
+        // Create a geocoder object to convert addresses to coordinates
+        var geocoder = new google.maps.Geocoder();
+
+        // Function to geocode an address and return a promise
+        function geocodeAddress(geocoder, address) {
+          return new Promise((resolve, reject) => {
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') {
+                resolve(results[0].geometry.location);
+              } else {
+                reject('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+          });
+        }
+
+        // Function to calculate distance between two points (in meters)
+        function calculateDistance(point1, point2) {
+          var R = 6371; // Radius of the Earth in km
+          var dLat = (point2.lat() - point1.lat()) * Math.PI / 180;
+          var dLng = (point2.lng() - point1.lng()) * Math.PI / 180;
+          var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(point1.lat() * Math.PI / 180) * Math.cos(point2.lat() * Math.PI / 180) *
+                  Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          var distance = R * c * 1000; // Distance in meters
+          return distance;
+        }
+
+        // Function to find and display the closest vendors
+        async function findClosestVendors() {
+          try {
+            var patientLocation = await geocodeAddress(geocoder, patientAddress);
+            var vendorLocations = await Promise.all(vendorAddresses.map(address => geocodeAddress(geocoder, address)));
+
+            // Calculate distances and sort vendors by distance
+            var vendorsWithDistances = vendorLocations.map((location, index) => {
+              return {
+                address: vendorAddresses[index],
+                location: location,
+                distance: calculateDistance(patientLocation, location)
+              };
+            }).sort((a, b) => a.distance - b.distance);
+
+            // Display the closest vendors (e.g., the top 3)
+            vendorsWithDistances.slice(0, 3).forEach(vendor => {
+              var marker = new google.maps.Marker({
+                map: map,
+                position: vendor.location,
+                title: vendor.address
+              });
+
+              // Add click event listener to the marker
+              marker.addListener('click', () => {
+                selectVendor(vendor);
+              });
+            });
+
+            // Center the map on the patient's location
+            map.setCenter(patientLocation);
+            new google.maps.Marker({
+              map: map,
+              position: patientLocation,
+              title: "Patient's Location",
+              icon: {
+                url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              }
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+        // Function to select a vendor and populate the address input
+        function selectVendor(vendor) {
+          var addressInput = document.getElementById('selectedAddress');
+          addressInput.value = vendor.address;
+          selectedAddress = vendor.address; // Store the selected address in the variable
+          console.log("Selected Address:", selectedAddress); // Log the selected address
+        }
+
+        // Find and display the closest vendors
+        findClosestVendors();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <input type="text" id="selectedAddress" placeholder="Selected Vendor Address" readonly />
+  </body>
+</html>
+
